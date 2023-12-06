@@ -1,26 +1,31 @@
 #include <iostream> 
 #include <cmath> 
 #include <stdexcept> 
-// Base class with virtual function for power calculation 
+
 class PowerCalculator { 
-public: 
-virtual double power(double n, int p = 2)  
-{ return std::pow(n, p);} 
+   public: 
+   virtual double power(double n, int p = 2)  
+{
+    return std::pow(n, p);
+} 
 virtual ~PowerCalculator() {} 
 }; 
-// Derived class with friend function for exception handling 
+
 class PowerCalculatorWithExceptionHandling : public PowerCalculator { 
 friend void checkExponent(int exp); 
-public: 
-double power(double n, int p = 2) override { 
-if (p < 0) 
-{    throw std::invalid_argument("Exponent must be a non-negative integer!");     } 
-return std::pow(n, p); 
-}}; 
-// Friend function to check if the exponent is a non-negative integer 
+   public: 
+    double power(double n, int p = 2) override { 
+    if (p < 0) 
+    {   
+        throw std::invalid_argument("Exponent must be a non-negative integer!");     
+    } 
+    return std::pow(n, p); 
+}
+}; 
 void checkExponent(int exp) { 
     if (exp < 0) 
- {throw std::invalid_argument("Exponent must be a non-negative integer!");} 
+ {
+     throw std::invalid_argument("Exponent must be a non-negative integer!");} 
 } 
 int main() { 
     try { 
